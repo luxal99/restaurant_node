@@ -54,5 +54,20 @@ export class App {
                 res.sendStatus(200);
 
         })
+
+        this.app.post(`/${this.userRouteName}/auth`, async (req: Request, res: Response) => {
+            try {
+
+                const user = await new UserService().findByName(req.body.username);
+                const auth = ((user != null && await bcrypt.compare(req.body.password, user.password))
+                    ? res.send({
+                        username: user.username,
+                        id: await bcrypt.hash(JSON.stringify(user.id), 10)
+                    }) : res.sendStatus(403))
+
+            } catch {
+                res.sendStatus(500);
+            }
+        })
     }
 }
