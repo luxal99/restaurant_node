@@ -8,10 +8,8 @@ export class UserService {
 
 
     constructor() {
-
         this.manager = getManager();
     }
-
     async save(entity: User): Promise<void> {
         await this.manager.save(entity);
     }
