@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@1,300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@900&display=swap');
+
+.row {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
+
+.header-container {
+    padding: 5em 10em 5em 10em;
+}
+
+h1 {
+    font-family: 'Lato', sans-serif !important;
+    font-weight: bold;
+    font-size: 60px;
+
+}
+
+h4 {
+    font-weight: bolder;
+    font-family: 'Josefin Sans', sans-serif !important;
+    color: #ffa900;
+}
+
+.left-header-col {
+    padding-top: 5em;
+}
+
+.header-btn {
+    width: 40%;
+    padding: 1.5em;
+    background-color: #ffa900;
+    border: 0px !important;
+    -webkit-box-shadow: 4px 15px 107px -25px rgba(0, 0, 0, 1);
+    -moz-box-shadow: 4px 15px 107px -25px rgba(0, 0, 0, 1);
+    box-shadow: 4px 15px 107px -25px rgba(0, 0, 0, 1);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+
+    font-weight: bolder;
+    font-family: 'Josefin Sans', sans-serif !important;
+    color: #ffffff;
+}
+
+.left-header-col{
+    border-right: 1px solid #eee;
+}
+.header-div{
+    border-left: 5em solid #121212;
+}
