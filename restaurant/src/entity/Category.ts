@@ -1,4 +1,5 @@
-import {BaseEntity, Column, Entity, PrimaryGeneratedColumn} from "typeorm";
+import {BaseEntity, Column, Entity, OneToMany, PrimaryGeneratedColumn} from "typeorm";
+import {Item} from "./Item";
 
 
 @Entity()
@@ -10,6 +11,9 @@ export class Category extends BaseEntity {
 
     @Column()
     title: string;
+
+    @OneToMany(type => Item, listOfItems => listOfItems.idCategory)
+    listOfItems: Item[];
 
 
     constructor(title: string) {

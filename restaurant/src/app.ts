@@ -9,6 +9,8 @@ import {UserService} from "./service/UserService";
 import {User} from "./entity/User";
 import {CategoryService} from "./service/CategoryService";
 import {Category} from "./entity/Category";
+import {ItemService} from "./service/ItemService";
+import {Item} from "./entity/Item";
 
 export class App {
 
@@ -17,9 +19,10 @@ export class App {
 
     private userRouteName: string;
     private categoryRouteName: string;
+    private menuItemRouteName: string;
 
 
-    constructor(userRouteName: string, categoryRouteName: string) {
+    constructor(userRouteName: string, categoryRouteName: string, menuItemRouteName: string) {
 
 
         this.app = express();
@@ -29,11 +32,13 @@ export class App {
 
         this.userRouteName = userRouteName;
         this.categoryRouteName = categoryRouteName;
+        this.menuItemRouteName = menuItemRouteName;
 
         this.pageRoutes();
 
         this.userRoute();
-        this.categoryRoute()
+        this.categoryRoute();
+        this.menuItemRoute();
 
     }
 
@@ -68,16 +73,13 @@ export class App {
 
         this.app.post(`/${this.userRouteName}/auth`, async (req: Request, res: Response) => {
             try {
-
-
                 const user = await new UserService().findByName(req.body.username);
-
 
                 const auth = ((user != null && await bcrypt.compare(req.body.password, user.password))
                     ? res.cookie("id", await bcrypt.hash(JSON.stringify(user.id), 10)) &&
                     res.render("admin", {
                         categories: await new CategoryService().getAll(),
-                        cookie: req.cookies.id
+                        cookie: req.cookies.id, items: await new ItemService().getAll()
                     }) : res.sendStatus(403))
 
             } catch {
@@ -102,6 +104,26 @@ export class App {
             } catch {
                 res.sendStatus(500);
             }
+        })
+    }
+
+    menuItemRoute() {
+        this.app.post(`/${this.menuItemRouteName}`, async (req: Request, res: Response) => {
+
+            try {
+                await new ItemService().save(new Item(req.body.title, req.body.idCategory))
+                res.render('admin', {
+                    cookie: req.cookies.id,
+                    categories: await new CategoryService().getAll(),
+                    items: new ItemService().getAll()
+                });
+            } catch {
+                res.sendStatus(500);
+            }
+        })
+
+        this.app.get(`/${this.menuItemRouteName}`,async (req:Request,res:Response)=>{
+            res.send(await new ItemService().getAll());
         })
     }
 }

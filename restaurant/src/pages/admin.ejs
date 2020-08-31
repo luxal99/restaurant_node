@@ -81,14 +81,81 @@ const user = cookie;
 
                     <%
                     for(const category of categories){ %>
-                    <div class="category-div">
-                        <h4><%= category.title %></h4>
-                    </div>
+                        <div class="category-div">
+                            <h6>Naziv kategorije</h6>
+                            <h4><%= category.title %></h4>
+                        </div>
                     <% } %>
 
                 </div>
             </div>
-            <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">b
+            <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                <div class="container">
+                    <button type="button" class="modal-btn" data-toggle="modal" data-target="#menuItems">
+                        Dodaj u meni
+                    </button>
+
+                    <%
+                    for(const item of items){ %>
+                        <div class="category-div">
+                            <div class="row">
+                                <div class="col-sm">
+                                    <h6>Naziv proizovda</h6>
+                                    <h4><%= item.title %></h4>
+                                </div>
+
+                                <div class="col-sm">
+                                    <h6>Naziv categorije</h6>
+                                    <h4><%= item.idCategory.title %></h4>
+                                </div>
+                            </div>
+                        </div>
+                    <% } %>
+                </div>
+
+                <!-- Modal -->
+                <div class="modal fade" id="menuItems" tabindex="-1" aria-labelledby="exampleModalLabel"
+                     aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Dodaj u meni</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form class="w3-container" action="/item" method="post">
+                                    <div class="form-group">
+                                        <input class="w3-input" type="text" name="title">
+                                        <label>Naziv kategorije</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <select name="idCategory" class="form-control form-control-lg">
+                                            <% for (const category of categories) { %>
+
+                                                <option value="<%= category.id %>"><%= category.title %>
+                                                </option>
+
+                                            <% }
+                                            %>
+                                        </select>
+                                    </div>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="modal-btn" style="background-color: #121212"
+                                        data-dismiss="modal">Close
+                                </button>
+                                <button type="submit" class="modal-btn">Sacuvaj</button>
+                            </div>
+                            </form>
+                        </div>
+                    </div>
+
+
+                </div>
+
             </div>
         </div>
     </div>
