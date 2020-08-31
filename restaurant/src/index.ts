@@ -9,7 +9,7 @@ createConnection().then(async connection => {
 
 }).catch(error => console.log(error));
 
-const application = new App().app;
+const application = new App("user").app;
 application.listen(3000,()=>{
     console.log("Listen on port")
 })
