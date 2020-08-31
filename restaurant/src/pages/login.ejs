@@ -23,16 +23,16 @@
                 </div>
                 <div class="col-sm">
                     <div class="w3-container">
-                        <form class="w3-container">
+                        <form class="w3-container" action="/user/auth" method="post">
                             <h3 class="text-center">Login</h3>
 
                             <h5 class="text-center">Lorem Ipsum is simply dummy text of the printing and typesetting
                                 industry</h5>
                             <p>
-                                <input class="w3-input" type="text">
+                                <input class="w3-input" type="text" name="username">
                                 <label>Username</label></p>
                             <p>
-                                <input class="w3-input" type="password">
+                                <input class="w3-input" type="password" name="password">
                                 <label>Password</label></p>
                             <div class="text-center">
                                 <button type="submit" class="login-btn">Login</button>

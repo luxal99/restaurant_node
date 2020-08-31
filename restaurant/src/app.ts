@@ -1,6 +1,7 @@
 import express = require("express");
 import {Application, Request, Response} from "express";
 import bodyParser = require("body-parser");
+
 import bcrypt = require("bcrypt");
 import path = require('path');
 import {UserService} from "./service/UserService";
@@ -14,11 +15,12 @@ export class App {
     private userRouteName: string;
 
 
-
     constructor(userRouteName: string) {
 
 
         this.app = express();
+
+        this.app.use(bodyParser.urlencoded({extended: false}))
         this.app.use(bodyParser.json());
 
         this.userRouteName = userRouteName;
@@ -50,20 +52,21 @@ export class App {
     userRoute() {
         this.app.post(`/${this.userRouteName}`, async (req: Request, res: Response) => {
 
-                 await new UserService().save(new User(req.body.username,await bcrypt.hash(req.body.password,10)));
-                res.sendStatus(200);
+            await new UserService().save(new User(req.body.username, await bcrypt.hash(req.body.password, 10)));
+            res.sendStatus(200);
 
         })
 
         this.app.post(`/${this.userRouteName}/auth`, async (req: Request, res: Response) => {
             try {
 
+
                 const user = await new UserService().findByName(req.body.username);
+
+
                 const auth = ((user != null && await bcrypt.compare(req.body.password, user.password))
-                    ? res.send({
-                        username: user.username,
-                        id: await bcrypt.hash(JSON.stringify(user.id), 10)
-                    }) : res.sendStatus(403))
+                    ? res.cookie("id", await bcrypt.hash(JSON.stringify(user.id), 10)) &&
+                    res.render("admin") : res.sendStatus(403))
 
             } catch {
                 res.sendStatus(500);
