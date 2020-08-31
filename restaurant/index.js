@@ -8,7 +8,8 @@ app.set('view engine', 'ejs');
 //setup public folder
 app.use(express.static('./public'));
 app.get('/',function (req, res) {
-    res.render('home')
+    res.render('header')
+
 });
 app.listen(port,()=>{
     console.log("Runned")
