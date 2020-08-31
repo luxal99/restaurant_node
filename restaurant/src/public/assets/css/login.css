@@ -1,0 +1,35 @@
+.login-div {
+    background-color: #ffa900;
+    height: 100vh;
+}
+
+.food-img {
+    background-image: url("/img/WBC_7095.jpg");
+    background-size: cover;
+    border-bottom-left-radius:18px ;
+    border-top-left-radius:18px ;
+}
+
+.login-container{
+    background-color: #fff;
+    border-radius: 18px;
+}
+
+.login{
+    padding-top: 10%;
+}
+
+.w3-container{
+    padding: 3em !important;
+}
+
+.login-btn{
+    -webkit-box-shadow: 10px 10px 35px -24px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 35px -24px rgba(0,0,0,0.75);
+    box-shadow: 10px 10px 35px -24px rgba(0,0,0,0.75);
+    border: 8px solid #ffa900;
+    border-radius: 8px;
+    width: 90%;
+    background-color: #ffa900;
+
+}
