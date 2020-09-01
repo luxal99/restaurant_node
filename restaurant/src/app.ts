@@ -60,9 +60,7 @@ export class App {
             res.render('login')
         })
 
-        this.app.get('/login', (req: Request, res: Response) => {
-            res.render('login')
-        })
+        
         this.app.get('/contact', (req: Request, res: Response) => {
             res.render('contact')
         })

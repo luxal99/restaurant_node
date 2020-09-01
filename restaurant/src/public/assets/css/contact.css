@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@1,300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@900&display=swap');
+
+
+body{
+    background-color: #F3F4F5 !important;
+
+
+}
+h2 {
+    font-family: 'Lato', sans-serif !important;
+    font-weight: bold;
+    font-size: 30px;
+
+}
+.paragraph {
+    font-weight: bolder;
+    font-family: 'Josefin Sans', sans-serif !important;
+    color: #ffa900;
+    font-size: 20px;
+}
+.contact-form{
+    max-width: 90%;
+    padding: 5em;
+}
+
+.login-btn {
+    -webkit-box-shadow: 10px 10px 35px -24px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 10px 10px 35px -24px rgba(0, 0, 0, 0.75);
+    box-shadow: 10px 10px 35px -24px rgba(0, 0, 0, 0.75);
+    border: 8px solid #ffa900;
+    border-radius: 8px;
+    width: 90%;
+    background-color: #ffa900;
+}
+
+.w3-input{
+    border-radius: 5px;
+}
+

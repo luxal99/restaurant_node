@@ -6,8 +6,61 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Kontakt</title>
+    <%- include('header.ejs') -%>
+  <link rel="stylesheet" href="/css/contact.css">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+ <link rel="stylesheet" href="../../node_modules/">
 </head>
 <body>
+ 
+<div class="row contact-form">
+<div class="col-md">
+<h2>Kontakt</h2>
+<p class="paragraph">Sva željena pitanja možete postaviti ovde</p>
+<div class="w3-container">
+    <form class="w3-container" action="/user/auth" method="post">
+       
+        <p>
+            <input class="w3-input" type="text" name="name">
+            <label>Ime i Prezime</label></p>
+        <p>
+            <input class="w3-input" type="text" name="email">
+            <label>Email Adresa</label></p>
+            <p>
+                <input class="w3-input" type="mobile" name="mobile">
+                <label>Telefon</label></p>
+                <p>
+                    <textarea class="w3-input" type="text" name="textarea"></textarea>
+                   
+                    <label>Ostavite Komentar</label></p>
+        <div class="text-center">
+            <button type="submit" class="login-btn">Pošalji</button>
+            
+        </div>
+    </form>
+</div>
+</div>
 
+<div class="col-md text-center">
+
+    <h2>Kontakt Info</h2>
+    <p class="paragraph">Pozovite nas ili nam pišite</p>
+    <div class="col-md">
+        <i class="fa fa-map-marker-alt">Adresa</i>
+        <p>Obelićeva bb</p>
+    </div>
+<div class="col-md">
+    <i class="fa fa-map-marker-alt">Email</i>
+    <p>dejanjolic66@gmail.com</p>
+</div>
+   
+<div class="col-md">
+    <i class="fa fa-map-marker-alt">Telefon</i>
+    <p>030 461-626</p>
+</div>
+
+    
+</div>
+</div>
 </body>
 </html>
