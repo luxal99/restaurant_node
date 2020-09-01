@@ -60,6 +60,13 @@ export class App {
             res.render('login')
         })
 
+        this.app.get('/login', (req: Request, res: Response) => {
+            res.render('login')
+        })
+        this.app.get('/contact', (req: Request, res: Response) => {
+            res.render('contact')
+        })
+
 
     }
 
@@ -77,9 +84,11 @@ export class App {
 
                 const auth = ((user != null && await bcrypt.compare(req.body.password, user.password))
                     ? res.cookie("id", await bcrypt.hash(JSON.stringify(user.id), 10)) &&
+
                     res.render("admin", {
                         categories: await new CategoryService().getAll(),
-                        cookie: req.cookies.id, items: await new ItemService().getAll()
+                        cookie: req.cookies.id,
+                        items: await new ItemService().getAll()
                     }) : res.sendStatus(403))
 
             } catch {
@@ -92,7 +101,11 @@ export class App {
         this.app.post(`/${this.categoryRouteName}`, async (req: Request, res: Response) => {
             try {
                 await new CategoryService().save(new Category(req.body.title));
-                res.render('admin')
+                res.render('admin', {
+                    cookie: req.cookies.id,
+                    categories: await new CategoryService().getAll(),
+                    items:await new ItemService().getAll()
+                })
             } catch {
                 res.sendStatus(500);
             }
@@ -115,14 +128,14 @@ export class App {
                 res.render('admin', {
                     cookie: req.cookies.id,
                     categories: await new CategoryService().getAll(),
-                    items: new ItemService().getAll()
+                    items: await new ItemService().getAll()
                 });
             } catch {
                 res.sendStatus(500);
             }
         })
 
-        this.app.get(`/${this.menuItemRouteName}`,async (req:Request,res:Response)=>{
+        this.app.get(`/${this.menuItemRouteName}`, async (req: Request, res: Response) => {
             res.send(await new ItemService().getAll());
         })
     }
