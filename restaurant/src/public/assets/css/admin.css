@@ -2,10 +2,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@900&display=swap');
 
 
-body {
-    max-height: 100%;
-}
-
 h6{
     color: #ffa900;
     font-weight: bolder !important;
@@ -28,7 +24,7 @@ h3 {
 }
 
 .col-3 {
-    height: 100vh;
+    min-height: 100vh;
     background-color: #121212;
     color: #ffa900;
     padding-right: 0 !important;

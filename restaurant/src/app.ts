@@ -3,6 +3,11 @@ import {Application, Request, Response} from "express";
 import bodyParser = require("body-parser");
 
 let cookieParser = require('cookie-parser');
+const fileUpload = require('express-fileupload');
+const fs = require('fs');
+
+require('firebase/storage');
+
 import bcrypt = require("bcrypt");
 import path = require('path');
 import {UserService} from "./service/UserService";
@@ -11,6 +16,9 @@ import {CategoryService} from "./service/CategoryService";
 import {Category} from "./entity/Category";
 import {ItemService} from "./service/ItemService";
 import {Item} from "./entity/Item";
+import * as firebase from "firebase";
+
+
 
 export class App {
 
@@ -21,12 +29,12 @@ export class App {
     private categoryRouteName: string;
     private menuItemRouteName: string;
 
-
     constructor(userRouteName: string, categoryRouteName: string, menuItemRouteName: string) {
 
 
         this.app = express();
 
+        this.app.use(fileUpload())
         this.app.use(bodyParser.urlencoded({extended: false}))
         this.app.use(bodyParser.json());
 
@@ -102,7 +110,7 @@ export class App {
                 res.render('admin', {
                     cookie: req.cookies.id,
                     categories: await new CategoryService().getAll(),
-                    items:await new ItemService().getAll()
+                    items: await new ItemService().getAll()
                 })
             } catch {
                 res.sendStatus(500);
@@ -122,19 +130,45 @@ export class App {
         this.app.post(`/${this.menuItemRouteName}`, async (req: Request, res: Response) => {
 
             try {
+                const firebaseConfig = {
+                    apiKey: "AIzaSyAz8PX_PdPZo7WmWuxLYVMDiJUOozl0Fn4",
+                    authDomain: "soy-smile-249718.firebaseapp.com",
+                    databaseURL: "https://soy-smile-249718.firebaseio.com",
+                    projectId: "soy-smile-249718",
+                    storageBucket: "soy-smile-249718.appspot.com",
+                    messagingSenderId: "870517553704",
+                    appId: "1:870517553704:web:d238ce266071d519f8131d",
+                    measurementId: "G-JGV7HTSL0B"
+                }
+                if (!firebase.apps.length) {
+                    firebase.initializeApp(firebaseConfig);
+                }
+                const storageRef = firebase.storage().ref();
+
+                const image = req.files.image;
+
+                await storageRef.put(image).then(() => {
+                        console.log("Uploaded")
+                    }
+                ).catch((error) => {
+                    res.send(error)
+                });
+
                 await new ItemService().save(new Item(req.body.title, req.body.idCategory))
                 res.render('admin', {
                     cookie: req.cookies.id,
                     categories: await new CategoryService().getAll(),
                     items: await new ItemService().getAll()
                 });
-            } catch {
-                res.sendStatus(500);
+
+            } catch (e) {
+                res.send(e);
             }
         })
 
         this.app.get(`/${this.menuItemRouteName}`, async (req: Request, res: Response) => {
             res.send(await new ItemService().getAll());
         })
+
     }
 }

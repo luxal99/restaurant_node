@@ -125,7 +125,7 @@ const user = cookie;
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <form class="w3-container" action="/item" method="post">
+                                <form class="w3-container" enctype="multipart/form-data" action="/item" method="post">
                                     <div class="form-group">
                                         <input class="w3-input" type="text" name="title">
                                         <label>Naziv kategorije</label>
@@ -142,6 +142,11 @@ const user = cookie;
                                         </select>
                                     </div>
 
+                                    <div class="form-group">
+                                        <input class="w3-input" type="file" name="image">
+                                        <label>Izaberi fajl</label>
+                                    </div>
+                                    <button type="submit">UPLOAD</button>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="modal-btn" style="background-color: #121212"
@@ -150,6 +155,8 @@ const user = cookie;
                                 <button type="submit" class="modal-btn">Sacuvaj</button>
                             </div>
                             </form>
+
+
                         </div>
                     </div>
 
@@ -160,5 +167,7 @@ const user = cookie;
         </div>
     </div>
 </div>
+
+
 </body>
 </html>
