@@ -136,18 +136,17 @@ export class App {
     }
 
     menuItemRoute() {
-        this.app.post(`/${this.menuItemRouteName}`, async (req: Request, res: Response) => {
 
+        this.app.post(`/${this.menuItemRouteName}`, async (req: Request, res: Response) => {
 
             const image = req.files.image;
             await image.mv(`src/${image.name}`, (err) => {
-                console.log(err)
             });
 
             const imageEntity = new Image(`/uploads/${image.name}`);
-            const imageService = await new ImageService().save(imageEntity);
+            await new ImageService().save(imageEntity);
 
-            await new ItemService().save(new Item(req.body.title, req.body.idCategory, imageEntity));
+            await new ItemService().save(new Item(req.body.title, req.body.idCategory, req.body.description, imageEntity));
 
             res.render('admin', {
                 cookie: req.cookies.id,
@@ -158,6 +157,18 @@ export class App {
 
         })
 
+        this.app.get(`/${this.menuItemRouteName}/delete/:id`, async (req: Request, res: Response) => {
+            try {
+                await new ItemService().delete(req.params.id);
+                res.render('admin', {
+                    cookie: req.cookies.id,
+                    categories: await new CategoryService().getAll(),
+                    items: await new ItemService().getAll()
+                })
+            } catch {
+                res.sendStatus(500);
+            }
+        })
         this.app.get(`/${this.menuItemRouteName}`, async (req: Request, res: Response) => {
             res.send(await new ItemService().getAll());
         })

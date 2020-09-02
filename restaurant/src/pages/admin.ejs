@@ -17,6 +17,8 @@
             integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
             crossorigin="anonymous"></script>
     <link rel="stylesheet" href="/css/admin.css">
+    <script src="/css/fontawesome/js/all.js"></script>
+    <link rel="stylesheet" href="/css/fontawesome/css/all.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
           integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -108,6 +110,12 @@ const user = cookie;
                                     <h6>Naziv categorije</h6>
                                     <h4><%= item.idCategory.title %></h4>
                                 </div>
+
+                                <form method="get" action="/item/delete/<%= item.id %>">
+                                    <div class="col-sm-1">
+                                        <button type="submit" class="close-btn"><i class="fa fa-times"></i></button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     <% } %>
@@ -146,7 +154,12 @@ const user = cookie;
                                         <input class="w3-input" type="file" name="image">
                                         <label>Izaberi fajl</label>
                                     </div>
-                                    <button type="submit">UPLOAD</button>
+
+                                    <div class="form-group">
+                                        <label for="exampleFormControlTextarea1">Example textarea</label>
+                                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+                                                  name="description"></textarea>
+                                    </div>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="modal-btn" style="background-color: #121212"

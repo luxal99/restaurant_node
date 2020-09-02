@@ -14,8 +14,12 @@ export class ItemService {
         await this.manager.save(entity);
     }
 
+    async delete(id: number) {
+        await this.manager.delete(Item, id);
+    }
+
     async getAll(): Promise<Item[]> {
-        return await this.manager.find(Item,{relations:['idCategory']});
+        return await this.manager.find(Item, {relations: ['idCategory']});
     }
 
 }
