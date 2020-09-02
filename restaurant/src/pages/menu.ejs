@@ -6,9 +6,56 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Meni</title>
-    <%-include('header')-%>
+    <link rel="stylesheet" href="/css/menu.css">
 </head>
 <body>
 
+<div id="overlay" class="text-center" style="padding-top: 10%">
+    <img src="/img/divider.png" alt="Loading"/>
+</div>
+<div class="page">
+    <div class="header">
+        <%- include('header_for_black') -%>
+        <div class="header-container">
+            <div class="row">
+                <div class="col-sm text-left header-left-col">
+                    <h1>Pogledaj nas meni</h1>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
+                        the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley
+                        of type and scrambled it to make a type specimen book. It has survived not onl</p>
+                </div>
+                <div class="col-sm">
+                    <img class="text-left img-fluid"
+                         src="/img/mbyi360-burger.png">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-container text-center">
+        <div class="row item-row text-center">
+            <% for (const item of items){ %>
+
+                <% if(item.idCategory.id === 3){ %>
+
+                <div class="col-sm item-card">
+                    <h5 class="text-left"><i class="fa fa-info-circle"
+                                             style="color:#845a00;"></i> <%= item.idCategory.title %></h5>
+                    <div class="divider"></div>
+                    <h5 class="text-left"><i class="fa fa-info-circle" style="color: #121212"></i> <%= item.title %>
+                    </h5>
+                    <img class="img-fluid" src="<%= item.idImage.url %>" width="300px" style="padding-top: 2em">
+                </div>
+                <% } %>
+
+            <% } %>
+        </div>
+    </div>
+</div>
+
+<script>
+
+
+</script>
 </body>
 </html>
