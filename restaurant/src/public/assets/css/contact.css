@@ -2,24 +2,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@900&display=swap');
 
 
-body{
+body {
     background-color: #F3F4F5 !important;
-
-
 }
+
 h2 {
     font-family: 'Lato', sans-serif !important;
     font-weight: bold;
-    font-size: 30px;
+    font-size: 60px !important;
 
 }
+
 .paragraph {
     font-weight: bolder;
     font-family: 'Josefin Sans', sans-serif !important;
     color: #ffa900;
     font-size: 20px;
 }
-.contact-form{
+
+.contact-form {
     max-width: 90%;
     padding: 5em;
 }
@@ -28,19 +29,64 @@ h2 {
     -webkit-box-shadow: 10px 10px 35px -24px rgba(0, 0, 0, 0.75);
     -moz-box-shadow: 10px 10px 35px -24px rgba(0, 0, 0, 0.75);
     box-shadow: 10px 10px 35px -24px rgba(0, 0, 0, 0.75);
-    border: 8px solid #ffa900;
-    border-radius: 8px;
-    width: 90%;
+    padding: 1em;
+    width: 50%;
+    border: 0 !important;
     background-color: #ffa900;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 3px;
+    color: #ffffff;
+    margin-top: 2em;
+    font-family: 'Lato', sans-serif !important;
 }
 
 
-
-.map-class{
+.map-class {
     padding: 5em;
 }
 
-.contact-info{
-    margin-top: 3em;
-    margin-left: 10em;
+
+.w3-input {
+    background-color: #e9e9e9;
+    border: 0 !important;
+    padding: 1.5em !important;
+    color: #121212;
+}
+
+.left-col {
+    border-right: 1px solid #e9e9e9;
+}
+
+.contact-container {
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+.col-sm-2 {
+    padding: 1em;
+}
+
+h4 {
+    letter-spacing: 3px;
+    font-family: 'Lato', sans-serif !important;
+}
+
+.contact-info-h4 {
+    letter-spacing: normal;
+    font-family: 'Lato', sans-serif !important;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.contact-info-col {
+    padding-top: 6em
+}
+
+.divider{
+    background-color: #e9e9e9;
+    height: 1px;
+}
+.fa-3x{
+    font-size:40px;
 }
