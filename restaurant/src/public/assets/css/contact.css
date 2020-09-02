@@ -43,6 +43,8 @@ h2 {
 
 
 .map-class {
+    display: flex;
+    
     padding: 5em;
 }
 
@@ -92,4 +94,25 @@ h4 {
 }
 .page{
     display: none;
+}
+
+@media screen and (max-width:420px){
+
+.contact-form{
+    zoom: 70%;
+    max-width: 100%;
+    padding: 0em;
+}
+.contact-info-col{
+    padding-top: 10em;
+}
+.map-class{
+    padding: 2em;
+}
+.contact-info-col{
+    text-align: center !important;
+}
+.text-left{
+    text-align: center !important;
+}
 }
