@@ -144,3 +144,11 @@ button{
 
     font-family: 'Lato', sans-serif !important;
 }
+button:hover{
+    background-color: #121212;
+    transition: 1s ease;
+}
+
+.home{
+display: none;
+}

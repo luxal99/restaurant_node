@@ -81,6 +81,10 @@ export class App {
             res.render('contact')
         })
 
+        this.app.get('/menu', (req: Request, res: Response) => {
+            res.render('menu')
+        })
+
 
     }
 
