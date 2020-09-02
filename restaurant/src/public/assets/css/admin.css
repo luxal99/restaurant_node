@@ -74,3 +74,14 @@ h3 {
     padding: 1em;
 
 }
+
+
+.close-btn{
+    background-color: #fff;
+    border: 0 !important;
+    font-size: 25px;
+    padding-top: .5em;
+    -webkit-box-shadow: 4px 15px 107px -25px rgba(0, 0, 0, 1);
+    -moz-box-shadow: 4px 15px 107px -25px rgba(0, 0, 0, 1);
+    box-shadow: 4px 15px 107px -25px rgba(0, 0, 0, 1);
+}
