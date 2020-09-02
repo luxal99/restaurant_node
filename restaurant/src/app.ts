@@ -3,10 +3,10 @@ import {Application, Request, Response} from "express";
 import bodyParser = require("body-parser");
 
 const cors = require('cors');
-
 let cookieParser = require('cookie-parser');
 const fileUpload = require('express-fileupload');
 const fs = require('fs');
+
 require('firebase/storage');
 
 import bcrypt = require("bcrypt");
@@ -35,11 +35,15 @@ export class App {
 
         this.app = express();
 
-        this.app.use(fileUpload())
         this.app.use(bodyParser.urlencoded({extended: false}))
         this.app.use(bodyParser.json());
-
+        this.app.use(express.static(path.join(__dirname, 'public')));
+        this.app.use(cors());
+        this.app.use(bodyParser.json({limit: '50mb', type: 'application/json'}));
         this.userRouteName = userRouteName;
+
+        this.app.use(fileUpload())
+
         this.categoryRouteName = categoryRouteName;
         this.menuItemRouteName = menuItemRouteName;
 
@@ -59,7 +63,6 @@ export class App {
         this.app.use(cookieParser());
         this.app.set('view engine', 'ejs');
         this.app.use(express.static(__dirname + '/public/assets'));
-        this.app.use(express.static(path.join(__dirname, 'public')));
         this.app.use(cors());
         this.app.use(bodyParser.json({limit: '50mb', type: 'application/json'}));
 
@@ -134,18 +137,18 @@ export class App {
         this.app.post(`/${this.menuItemRouteName}`, async (req: Request, res: Response) => {
 
 
-                const image = req.files.image;
+            const image = req.files.image;
+            await image.mv(`src/${image.name}`, (err) => {
+                console.log(err)
+            });
 
-                console.log(image)
+            await new ItemService().save(new Item(req.body.title, req.body.idCategory))
 
-                await image.mv(`/public`);
-
-                await new ItemService().save(new Item(req.body.title, req.body.idCategory))
-                res.render('admin', {
-                    cookie: req.cookies.id,
-                    categories: await new CategoryService().getAll(),
-                    items: await new ItemService().getAll()
-                });
+            res.render('admin', {
+                cookie: req.cookies.id,
+                categories: await new CategoryService().getAll(),
+                items: await new ItemService().getAll()
+            });
 
 
         })
