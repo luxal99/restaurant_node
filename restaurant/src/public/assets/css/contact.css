@@ -34,7 +34,13 @@ h2 {
     background-color: #ffa900;
 }
 
-.w3-input{
-    border-radius: 5px;
+
+
+.map-class{
+    padding: 5em;
 }
 
+.contact-info{
+    margin-top: 3em;
+    margin-left: 10em;
+}

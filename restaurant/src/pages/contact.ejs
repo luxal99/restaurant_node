@@ -9,17 +9,18 @@
     <%- include('header.ejs') -%>
   <link rel="stylesheet" href="/css/contact.css">
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
- <link rel="stylesheet" href="../../node_modules/">
+
 </head>
 <body>
 
 <div class="row contact-form">
-<div class="col-md">
-<h2>Kontakt</h2>
-<p class="paragraph">Sva željena pitanja možete postaviti ovde</p>
-<div class="w3-container">
-    <form class="w3-container" action="/user/auth" method="post">
+<div class="col-md text-left">
 
+<div class="w3-container">
+    
+    <form class="w3-container" action="/user/auth" method="post">
+        <h2>Kontakt</h2>
+        <p class="paragraph">Sva željena pitanja možete postaviti ovde</p>
         <p>
             <input class="w3-input" type="text" name="name">
             <label>Ime i Prezime</label></p>
@@ -41,26 +42,55 @@
 </div>
 </div>
 
-<div class="col-md text-center">
+<div class="col-md text-center ">
 
     <h2>Kontakt Info</h2>
     <p class="paragraph">Pozovite nas ili nam pišite</p>
-    <div class="col-md">
-        <i class="fa fa-map-marker-alt"></i>
-        <p>Obelićeva bb</p>
+    <div class="row contact-info">
+        <div class="col-md-2">
+            
+            <i class="fa fa-map-marker-alt fa-3x"></i>
+        </div>
+        
+            <p class="paragraph">Obelićeva bb</p>
+      
+   
+
     </div>
-<div class="col-md">
-    <i class="fa fa-map-marker-alt"></i>
-    <p>dejanjolic66@gmail.com</p>
+<div class="row contact-info">
+    <div class="col-md-2">
+        <i class="fas fa-envelope fa-3x"></i>
+    </div>
+   
+    <p class="paragraph">dejanjolic66@gmail.com</p>
+   
+ 
 </div>
 
-<div class="col-md">
-    <i class="fa fa-map-marker-alt"></i>
-    <p>030 461-626</p>
-</div>
+<div class="row contact-info">
+    <div class="col-md-2">
+        <i class="fas fa-phone-alt fa-3x"></i>
+    </div>
 
+    <p class="paragraph">030 461-626</p>
 
+   
 </div>
+<div class="row contact-info">
+    <div class="col-md-2">
+        <i class="fas fa-phone-alt fa-3x"></i>
+    </div>
+
+    <p class="paragraph">030 461-626</p>
+
+   
+</div>
+</div>
+</div>
+<div class="container text-center">
+    <div class="map-class">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d719.5449612611188!2d21.960091!3d43.8313688!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47541b96e6eace85%3A0xa7ac2a4cfa0fa780!2sStara%20Avlija%201762!5e0!3m2!1ssr!2srs!4v1599037423984!5m2!1ssr!2srs" width="1000" height="500" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+    </div>
 </div>
 </body>
 </html>
