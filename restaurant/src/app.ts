@@ -81,8 +81,8 @@ export class App {
             res.render('contact')
         })
 
-        this.app.get('/menu', (req: Request, res: Response) => {
-            res.render('menu')
+        this.app.get('/menu', async (req: Request, res: Response) => {
+            res.render('menu', {items: await new ItemService().getAll()})
         })
 
 
