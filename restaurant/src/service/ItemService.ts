@@ -19,7 +19,7 @@ export class ItemService {
     }
 
     async getAll(): Promise<Item[]> {
-        return await this.manager.find(Item, {relations: ['idCategory']});
+        return await this.manager.find(Item, {relations: ['idCategory','idImage']});
     }
 
 }

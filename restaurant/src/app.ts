@@ -68,9 +68,8 @@ export class App {
         this.app.use(cors());
         this.app.use(bodyParser.json({limit: '50mb', type: 'application/json'}));
 
-        this.app.get('/', (req: Request, res: Response) => {
-            res.render('home')
-
+        this.app.get('/', async (req: Request, res: Response) => {
+            res.render('home', {items: await new ItemService().getAll()})
         });
 
         this.app.get('/login', (req: Request, res: Response) => {
@@ -140,7 +139,7 @@ export class App {
         this.app.post(`/${this.menuItemRouteName}`, async (req: Request, res: Response) => {
 
             const image = req.files.image;
-            await image.mv(`src/${image.name}`, (err) => {
+            await image.mv(`src/public/uploads/${image.name}`, (err) => {
             });
 
             const imageEntity = new Image(`/uploads/${image.name}`);
