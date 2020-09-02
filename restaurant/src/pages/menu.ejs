@@ -94,6 +94,38 @@ let itemGlobal;
 
     </div>
 
+
+    <div class="header-container text-center">
+        <h1 class="text-left" style="color: #121212;padding-top: 2em">Predjela</h1>
+        <div class="divider"></div>
+        <div class="row item-row text-center item-list" id="menu">
+
+            <% for (const item of items){ %>
+                <% if(item.idCategory.id === 2){ %>
+                    <div class="col-sm item-card">
+
+                        <input type="hidden" id="item" value="<%= item.id %>">
+
+                        <h5 class="text-left"><i class="fa fa-info-circle"
+                                                 style="color:#845a00;"></i> <%= item.idCategory.title %></h5>
+                        <div class="divider"></div>
+                        <h5 class="text-left"><i class="fa fa-info-circle"></i> <%= item.title %>
+                        </h5>
+                        <img class="img-fluid" src="<%= item.idImage.url %>" width="300px" style="padding-top: 2em">
+                        <form method="get" action="/item/<%= item.id %>">
+                            <button type="submit" class="more-btn">VISE INFORMACIJA</button>
+                        </form>
+                    </div>
+
+                <% } %>
+
+            <% }
+            %>
+
+        </div>
+
+    </div>
+
     <div class="header-container text-center">
         <h1 class="text-left" style="color: #121212;padding-top: 2em">Dezerti</h1>
         <div class="divider"></div>
@@ -124,6 +156,7 @@ let itemGlobal;
         </div>
 
     </div>
+
     <div class="about-container text-center" >
         <div style="padding-top: 5em;padding-bottom: 5em">
             <h1>Konraktirajte nas</h1>
