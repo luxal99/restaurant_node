@@ -1,24 +1,24 @@
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@1,300&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@900&display=swap');
 
-.header{
+.header {
     background-color: #121212;
     height: 100vh;
 }
 
-.row{
+.row {
     margin-left: 0 !important;
     margin-right: 0 !important;
 }
 
-h1{
+h1 {
     font-size: 80px !important;
     font-family: 'Lato', sans-serif !important;
     font-weight: bold;
     color: #fff;
 }
 
-p{
+p {
 
     font-weight: bolder;
     color: #845a00;
@@ -26,30 +26,89 @@ p{
     font-family: 'Josefin Sans', sans-serif !important;
 }
 
-.header-container{
+.header-container {
     padding-left: 10%;
     padding-right: 10%;
 }
 
-.header-left-col{
+.header-left-col {
     padding-top: 10%;
 }
 
-.item-row{
+.item-row {
     padding-top: 2em;
 }
 
 
-.divider{
+.divider {
     height: 1px;
     background-color: #eee;
 }
 
-.item-card{
-    margin:2.5em;
+.item-card {
+    margin: 2.5em;
     padding: 2em;
     background-color: #fff;
     -webkit-box-shadow: 4px 15px 107px -25px rgba(0, 0, 0, 1);
     -moz-box-shadow: 4px 15px 107px -25px rgba(0, 0, 0, 1);
     box-shadow: 4px 15px 107px -25px rgba(0, 0, 0, 1);
+}
+
+.more-btn {
+    text-transform: uppercase;
+    -webkit-box-shadow: 4px 15px 107px -25px rgba(0, 0, 0, 1);
+    -moz-box-shadow: 4px 15px 107px -25px rgba(0, 0, 0, 1);
+    box-shadow: 4px 15px 107px -25px rgba(0, 0, 0, 1);
+    border: 0 !important;
+    letter-spacing: 3px;
+    background-color: #ffa900;
+    font-family: 'Lato', sans-serif !important;
+    padding: 1.5em;
+    color: #ffffff;
+    margin-top: 2em;
+}
+
+.more-h1 {
+    font-family: 'Lato', sans-serif !important;
+    color: #121212;
+    font-size: 50px !important;
+}
+
+.close-btn {
+    background: none;
+    border: 0 !important;
+    font-size: 30px;
+    color: #e9e9e9;
+}
+
+.more-card {
+    padding-top: 5em;
+    padding-bottom: 5em;
+    margin-top: 10em;
+    -webkit-box-shadow: 4px 15px 107px -25px rgba(0, 0, 0, 1);
+    -moz-box-shadow: 4px 15px 107px -25px rgba(0, 0, 0, 1);
+    box-shadow: 4px 15px 107px -25px rgba(0, 0, 0, 1);
+}
+
+.contact-btn{
+    width: 50%;
+    letter-spacing: 3px;
+    border: 0 !important;
+    background-color: #ffa900;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: bold;
+    -webkit-box-shadow: 4px 15px 107px -25px rgba(0, 0, 0, 1);
+    -moz-box-shadow: 4px 15px 107px -25px rgba(0, 0, 0, 1);
+    box-shadow: 4px 15px 107px -25px rgba(0, 0, 0, 1);
+    padding: 1em;
+}
+
+.about-container h1 {
+    color: #121212;
+}
+
+h5{
+    padding: .5em !important;
+    font-family: 'Lato', sans-serif !important;
 }

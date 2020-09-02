@@ -21,6 +21,7 @@ import * as firebase from "firebase";
 import Blob = firebase.firestore.Blob;
 import {Image} from "./entity/Image";
 import {ImageService} from "./service/ImageService";
+import {log} from "util";
 
 
 export class App {
@@ -56,6 +57,7 @@ export class App {
         this.menuItemRoute();
 
     }
+
 
     pageRoutes() {
 
@@ -174,6 +176,16 @@ export class App {
         })
         this.app.get(`/${this.menuItemRouteName}`, async (req: Request, res: Response) => {
             res.send(await new ItemService().getAll());
+        })
+
+
+        this.app.get(`/${this.menuItemRouteName}/:id`, async (req: Request, res: Response) => {
+            try {
+                let item = await new ItemService().findById(req.params.id)
+                res.render('menu', {itemById: item,items: await new ItemService().getAll()});
+            } catch {
+                res.sendStatus(500);
+            }
         })
 
     }
