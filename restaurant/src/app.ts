@@ -2,10 +2,11 @@ import express = require("express");
 import {Application, Request, Response} from "express";
 import bodyParser = require("body-parser");
 
+const cors = require('cors');
+
 let cookieParser = require('cookie-parser');
 const fileUpload = require('express-fileupload');
 const fs = require('fs');
-
 require('firebase/storage');
 
 import bcrypt = require("bcrypt");
@@ -17,7 +18,7 @@ import {Category} from "./entity/Category";
 import {ItemService} from "./service/ItemService";
 import {Item} from "./entity/Item";
 import * as firebase from "firebase";
-
+import Blob = firebase.firestore.Blob;
 
 
 export class App {
@@ -58,6 +59,9 @@ export class App {
         this.app.use(cookieParser());
         this.app.set('view engine', 'ejs');
         this.app.use(express.static(__dirname + '/public/assets'));
+        this.app.use(express.static(path.join(__dirname, 'public')));
+        this.app.use(cors());
+        this.app.use(bodyParser.json({limit: '50mb', type: 'application/json'}));
 
         this.app.get('/', (req: Request, res: Response) => {
             res.render('home')
@@ -68,7 +72,7 @@ export class App {
             res.render('login')
         })
 
-        
+
         this.app.get('/contact', (req: Request, res: Response) => {
             res.render('contact')
         })
@@ -129,30 +133,12 @@ export class App {
     menuItemRoute() {
         this.app.post(`/${this.menuItemRouteName}`, async (req: Request, res: Response) => {
 
-            try {
-                const firebaseConfig = {
-                    apiKey: "AIzaSyAz8PX_PdPZo7WmWuxLYVMDiJUOozl0Fn4",
-                    authDomain: "soy-smile-249718.firebaseapp.com",
-                    databaseURL: "https://soy-smile-249718.firebaseio.com",
-                    projectId: "soy-smile-249718",
-                    storageBucket: "soy-smile-249718.appspot.com",
-                    messagingSenderId: "870517553704",
-                    appId: "1:870517553704:web:d238ce266071d519f8131d",
-                    measurementId: "G-JGV7HTSL0B"
-                }
-                if (!firebase.apps.length) {
-                    firebase.initializeApp(firebaseConfig);
-                }
-                const storageRef = firebase.storage().ref();
 
                 const image = req.files.image;
 
-                await storageRef.put(image).then(() => {
-                        console.log("Uploaded")
-                    }
-                ).catch((error) => {
-                    res.send(error)
-                });
+                console.log(image)
+
+                await image.mv(`/public`);
 
                 await new ItemService().save(new Item(req.body.title, req.body.idCategory))
                 res.render('admin', {
@@ -161,9 +147,7 @@ export class App {
                     items: await new ItemService().getAll()
                 });
 
-            } catch (e) {
-                res.send(e);
-            }
+
         })
 
         this.app.get(`/${this.menuItemRouteName}`, async (req: Request, res: Response) => {
