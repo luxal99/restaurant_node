@@ -38,9 +38,14 @@
         background: #ffa900;
         border-radius: 10px;
     }
+
+    .page{
+        display: none;
+    }
 </style>
 <body>
-<div class="">
+
+<div class="page">
     <nav class="navbar navbar-expand " style="padding: 2em">
         <a class="navbar-brand" href="/">
             <img class="img-fluid" src="/img/logo.png" width="50px">
@@ -59,5 +64,15 @@
       </nav>
 </div>
 
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+<script>
+    $(window).load(function(){
+        $('#overlay').fadeOut(500,function () {
+            $('.page').fadeIn();
+        });
+    });
+</script>
 </body>
 </html>

@@ -90,3 +90,6 @@ h4 {
 .fa-3x{
     font-size:40px;
 }
+.page{
+    display: none;
+}

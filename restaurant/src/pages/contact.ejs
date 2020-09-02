@@ -1,102 +1,113 @@
 <!doctype html>
 <html lang="en">
 <head>
+
+    <%- include('header') -%>
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Kontakt</title>
-    <%- include('header.ejs') -%>
     <link rel="stylesheet" href="/css/contact.css">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
 </head>
 <body>
-<div class="contact-container text-center">
 
-    <div class="row contact-form">
-        <div class="col-sm text-left left-col">
+<div id="overlay" class="text-center" style="padding-top: 10%">
+    <img src="/img/divider.png" alt="Loading" />
+</div>
 
-            <div class="w3-container text-left">
 
-                <form class="w3-container" action="/user/auth" method="post">
-                    <h2>Kontaktirajte <span style="color: #ffa900">nas</span></h2>
-                    <p class="paragraph">Sva željena pitanja možete postaviti ovde</p>
-                    <p>
-                        <input class="w3-input" type="text" name="name" placeholder="IME I PREZIME">
-                    <p>
-                        <input class="w3-input" type="text" name="email" PLACEHOLDER="E-MAIL">
-                    <p>
-                        <input class="w3-input" type="mobile" name="mobile" PLACEHOLDER="TELEFON">
-                    <p>
-                        <textarea class="w3-input" type="text" name="textarea" placeholder="KOMENTAR"></textarea>
-                    <div class="text-left">
-                        <button type="submit" class="login-btn">Pošalji</button>
+<div class="page">
 
+
+    <div class="contact-container text-center">
+
+        <div class="row contact-form">
+            <div class="col-sm text-left left-col">
+
+                <div class="w3-container text-left">
+
+                    <form class="w3-container" action="/user/auth" method="post">
+                        <h2>Kontaktirajte <span style="color: #ffa900">nas</span></h2>
+                        <p class="paragraph">Sva željena pitanja možete postaviti ovde</p>
+                        <p>
+                            <input class="w3-input" type="text" name="name" placeholder="IME I PREZIME">
+                        <p>
+                            <input class="w3-input" type="text" name="email" PLACEHOLDER="E-MAIL">
+                        <p>
+                            <input class="w3-input" type="mobile" name="mobile" PLACEHOLDER="TELEFON">
+                        <p>
+                            <textarea class="w3-input" type="text" name="textarea" placeholder="KOMENTAR"></textarea>
+                        <div class="text-left">
+                            <button type="submit" class="login-btn">Pošalji</button>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="col-sm text-left contact-info-col">
+
+                <h4 class="contact-info-h4">Kontakt Info</h4>
+                <p class="paragraph">Pozovite nas ili nam pišite</p>
+                <div class="divider"></div>
+
+                <div class="row contact-info" style="padding-top: 2em">
+                    <div class="col-sm-2 text-center">
+
+                        <i class="fa fa-map-marker-alt fa-3x"></i>
                     </div>
-                </form>
+
+                    <div class="col-sm text-left">
+                        <h4>ADRESA</h4>
+                        <p class="paragraph">Obelićeva bb</p>
+                    </div>
+
+
+                </div>
+                <div class="row contact-info">
+                    <div class="col-sm-2 text-center">
+                        <i class="fas fa-envelope fa-3x"></i>
+                    </div>
+
+                    <div class="col-sm text-left">
+                        <h4>EMAIL</h4>
+                        <p class="paragraph">dejanjolic66@gmail.com</p>
+                    </div>
+
+
+                </div>
+
+                <div class="row contact-info">
+                    <div class="col-sm-2 text-center">
+                        <i class="fa fa-phone-alt fa-3x"></i>
+                    </div>
+                    <div class="col-sm text-left">
+                        <h4>TELEFON</h4>
+                        <p class="paragraph">030 461-626 </p><br>
+                    </div>
+
+                </div>
+
             </div>
         </div>
+    </div>
 
-        <div class="col-sm text-left contact-info-col" >
-
-                    <h4 class="contact-info-h4">Kontakt Info</h4>
-                    <p class="paragraph">Pozovite nas ili nam pišite</p>
-            <div class="divider"></div>
-
-            <div class="row contact-info" style="padding-top: 2em">
-                <div class="col-sm-2 text-center">
-
-                    <i class="fa fa-map-marker-alt fa-3x"></i>
-                </div>
-
-                <div class="col-sm text-left">
-                    <h4>ADRESA</h4>
-                    <p class="paragraph">Obelićeva bb</p>
-                </div>
-
-
-            </div>
-            <div class="row contact-info">
-                <div class="col-sm-2 text-center">
-                    <i class="fas fa-envelope fa-3x"></i>
-                </div>
-
-                <div class="col-sm text-left">
-                    <h4>EMAIL</h4>
-                    <p class="paragraph">dejanjolic66@gmail.com</p>
-                </div>
-
-
-            </div>
-
-            <div class="row contact-info">
-                <div class="col-sm-2 text-center">
-                    <i class="fa fa-phone-alt fa-3x"></i>
-                </div>
-                <div class="col-sm text-left">
-                    <h4>TELEFON</h4>
-                    <p class="paragraph">030 461-626 </p><br>
-                </div>
-
-            </div>
-
+    <div class="container text-center">
+        <div class="map-class">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d719.5449612611188!2d21.960091!3d43.8313688!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47541b96e6eace85%3A0xa7ac2a4cfa0fa780!2sStara%20Avlija%201762!5e0!3m2!1ssr!2srs!4v1599037423984!5m2!1ssr!2srs"
+                    width="1000" height="500" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false"
+                    tabindex="0"></iframe>
         </div>
     </div>
-</div>
 
-<div class="container text-center">
-    <div class="map-class">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d719.5449612611188!2d21.960091!3d43.8313688!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47541b96e6eace85%3A0xa7ac2a4cfa0fa780!2sStara%20Avlija%201762!5e0!3m2!1ssr!2srs!4v1599037423984!5m2!1ssr!2srs"
-                width="1000" height="500" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false"
-                tabindex="0"></iframe>
-    </div>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+        <path fill="#ffa900" fill-opacity="1"
+              d="M0,96L30,128C60,160,120,224,180,250.7C240,277,300,267,360,218.7C420,171,480,85,540,58.7C600,32,660,64,720,90.7C780,117,840,139,900,149.3C960,160,1020,160,1080,170.7C1140,181,1200,203,1260,197.3C1320,192,1380,160,1410,144L1440,128L1440,320L1410,320C1380,320,1320,320,1260,320C1200,320,1140,320,1080,320C1020,320,960,320,900,320C840,320,780,320,720,320C660,320,600,320,540,320C480,320,420,320,360,320C300,320,240,320,180,320C120,320,60,320,30,320L0,320Z"></path>
+    </svg>
 </div>
-
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-    <path fill="#ffa900" fill-opacity="1"
-          d="M0,96L30,128C60,160,120,224,180,250.7C240,277,300,267,360,218.7C420,171,480,85,540,58.7C600,32,660,64,720,90.7C780,117,840,139,900,149.3C960,160,1020,160,1080,170.7C1140,181,1200,203,1260,197.3C1320,192,1380,160,1410,144L1440,128L1440,320L1410,320C1380,320,1320,320,1260,320C1200,320,1140,320,1080,320C1020,320,960,320,900,320C840,320,780,320,720,320C660,320,600,320,540,320C480,320,420,320,360,320C300,320,240,320,180,320C120,320,60,320,30,320L0,320Z"></path>
-</svg>
 
 
 </body>
