@@ -19,6 +19,8 @@ import {ItemService} from "./service/ItemService";
 import {Item} from "./entity/Item";
 import * as firebase from "firebase";
 import Blob = firebase.firestore.Blob;
+import {Image} from "./entity/Image";
+import {ImageService} from "./service/ImageService";
 
 
 export class App {
@@ -142,7 +144,10 @@ export class App {
                 console.log(err)
             });
 
-            await new ItemService().save(new Item(req.body.title, req.body.idCategory))
+            const imageEntity = new Image(`/uploads/${image.name}`);
+            const imageService = await new ImageService().save(imageEntity);
+
+            await new ItemService().save(new Item(req.body.title, req.body.idCategory, imageEntity));
 
             res.render('admin', {
                 cookie: req.cookies.id,
