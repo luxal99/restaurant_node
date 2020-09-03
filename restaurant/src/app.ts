@@ -87,11 +87,11 @@ export class App {
             res.render('menu', {items: await new ItemService().getAll()})
         })
 
-        this.app.get('/err',(req:Request,res:Response)=>{
+        this.app.get('/err', (req: Request, res: Response) => {
             res.render('error')
         })
 
-        this.app.get('/**',(req:Request,res:Response)=>{
+        this.app.get('/**', (req: Request, res: Response) => {
             res.render('404')
         })
 
@@ -120,7 +120,7 @@ export class App {
                     }) : res.sendStatus(403))
 
             } catch {
-                res.sendStatus(500);
+                res.render('error')
             }
         })
     }
@@ -135,7 +135,7 @@ export class App {
                     items: await new ItemService().getAll()
                 })
             } catch {
-                res.sendStatus(500);
+                res.render('error')
             }
         })
 
@@ -143,7 +143,7 @@ export class App {
             try {
                 res.send(await new CategoryService().getAll());
             } catch {
-                res.sendStatus(500);
+                res.render('error')
             }
         })
     }
@@ -152,20 +152,24 @@ export class App {
 
         this.app.post(`/${this.menuItemRouteName}`, async (req: Request, res: Response) => {
 
-            const image = req.files.image;
-            await image.mv(`src/public/assets/uploads/${image.name}`, (err) => {
-            });
+            try{
+                const image = req.files.image;
+                await image.mv(`src/public/assets/uploads/${image.name}`, (err) => {
+                });
 
-            const imageEntity = new Image(`/uploads/${image.name}`);
-            await new ImageService().save(imageEntity);
+                const imageEntity = new Image(`/uploads/${image.name}`);
+                await new ImageService().save(imageEntity);
 
-            await new ItemService().save(new Item(req.body.title, req.body.idCategory, req.body.description, imageEntity));
+                await new ItemService().save(new Item(req.body.title, req.body.idCategory, req.body.description, imageEntity));
 
-            res.render('admin', {
-                cookie: req.cookies.id,
-                categories: await new CategoryService().getAll(),
-                items: await new ItemService().getAll()
-            });
+                res.render('admin', {
+                    cookie: req.cookies.id,
+                    categories: await new CategoryService().getAll(),
+                    items: await new ItemService().getAll()
+                });
+            }catch  {
+                res.render('error')
+            }
 
 
         })
@@ -179,20 +183,24 @@ export class App {
                     items: await new ItemService().getAll()
                 })
             } catch {
-                res.sendStatus(500);
+                res.render('error')
             }
         })
         this.app.get(`/${this.menuItemRouteName}`, async (req: Request, res: Response) => {
-            res.send(await new ItemService().getAll());
+            try {
+                res.send(await new ItemService().getAll());
+            } catch {
+                res.render('error')
+            }
         })
 
 
         this.app.get(`/${this.menuItemRouteName}/:id`, async (req: Request, res: Response) => {
             try {
                 let item = await new ItemService().findById(req.params.id)
-                res.render('menu', {itemById: item,items: await new ItemService().getAll()});
+                res.render('menu', {itemById: item, items: await new ItemService().getAll()});
             } catch {
-                res.sendStatus(500);
+                res.render('error')
             }
         })
 

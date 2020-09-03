@@ -9,7 +9,7 @@ export class Item extends BaseEntity {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column()
+    @Column({nullable: false})
     title: string;
 
     @Column({length: 1024})
