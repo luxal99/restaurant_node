@@ -122,6 +122,10 @@ h5{
     .about-container{
         padding-bottom: 5em;
     }
+
+    .more-card{
+        width: 80% !important;
+    }
 }
 
 @media screen and (max-width: 812px) and (min-width: 421px) {
