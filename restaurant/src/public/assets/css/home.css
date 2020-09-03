@@ -124,6 +124,7 @@ h4 {
     width: 10%;
     padding: 1em;
     border: 0 !important;
+    margin-bottom: 5em;
 }
 
 .contact-btn{
@@ -165,4 +166,26 @@ button{
 
 .contact-container{
     padding-top: 5em;
+}
+
+
+@media screen and (max-width:420px){
+
+    .header-container{
+        padding: 0em;
+    }
+    .header-btn{
+        width: 90%;
+        margin-bottom: 5em;
+    }
+    h1{
+        font-size: 50px;
+    }
+    .menu-btn{
+        width: 80%;
+    }
+    .contact-btn{
+        width: 80%;
+    }
+   
 }
