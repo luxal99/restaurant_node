@@ -144,3 +144,25 @@ button{
 
     font-family: 'Lato', sans-serif !important;
 }
+
+.menu-h5{
+    letter-spacing: 3px;
+    border-bottom: 1px solid #ffa900;
+}
+
+.menu-h5:hover{
+    color: #ffa900;
+    transition: .5s ease;
+}
+
+.item-div a {
+    color: #121212;
+}
+
+.item-div a:hover{
+    text-decoration: none;
+}
+
+.contact-container{
+    padding-top: 5em;
+}
