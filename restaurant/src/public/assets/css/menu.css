@@ -112,3 +112,24 @@ h5{
     padding: .5em !important;
     font-family: 'Lato', sans-serif !important;
 }
+
+@media screen and (max-width:420px){
+   
+    h1{
+        font-size: 25px !important;
+    }
+
+    .about-container{
+        padding-bottom: 5em;
+    }
+}
+
+@media screen and (max-width: 812px) and (min-width: 421px) {
+    h1{
+        font-size: 25px !important;
+    }
+    .header{
+        height: 140vh;
+    }
+
+}
