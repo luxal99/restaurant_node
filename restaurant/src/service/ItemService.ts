@@ -1,4 +1,4 @@
-import {EntityManager, getManager} from "typeorm";
+import {EntityManager, getConnection, getManager} from "typeorm";
 import {Item} from "../entity/Item";
 
 export class ItemService {
@@ -19,11 +19,23 @@ export class ItemService {
     }
 
     async getAll(): Promise<Item[]> {
-        return await this.manager.find(Item, {relations: ['idCategory','idImage']});
+        return await this.manager.find(Item, {relations: ['idCategory', 'idImage']});
     }
 
     async findById(id: number): Promise<Item> {
-        return await this.manager.findOne(Item, {id: id},{relations:['idCategory', 'idImage']});
+        return await this.manager.findOne(Item, {id: id}, {relations: ['idCategory', 'idImage']});
+    }
+
+    async update(item: Item) {
+        await getConnection()
+            .createQueryBuilder()
+            .update(Item)
+            .set({
+                title: item.title,
+                description: item.description,
+            })
+            .where("id = :id", {id: item.id})
+            .execute();
     }
 
 }

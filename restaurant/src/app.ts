@@ -91,6 +91,7 @@ export class App {
             res.render('error')
         })
 
+
         this.app.get('/**', (req: Request, res: Response) => {
             res.render('404')
         })
@@ -152,7 +153,7 @@ export class App {
 
         this.app.post(`/${this.menuItemRouteName}`, async (req: Request, res: Response) => {
 
-            try{
+            try {
                 const image = req.files.image;
                 await image.mv(`src/public/assets/uploads/${image.name}`, (err) => {
                 });
@@ -167,7 +168,7 @@ export class App {
                     categories: await new CategoryService().getAll(),
                     items: await new ItemService().getAll()
                 });
-            }catch  {
+            } catch {
                 res.render('error')
             }
 
@@ -204,5 +205,26 @@ export class App {
             }
         })
 
+        this.app.get(`/${this.menuItemRouteName}/byId/:id`, async (req: Request, res: Response) => {
+            try {
+                res.send(await new ItemService().findById(req.params.id))
+            } catch {
+                res.render('error')
+            }
+        })
+
+        this.app.post(`/${this.menuItemRouteName}/update`, async (req: Request, res: Response) => {
+            try {
+                const item = new Item();
+                item.title = req.body.title;
+                item.description = req.body.description;
+                item.id = req.body.id;
+
+                await new ItemService().update(item);
+                res.render('menu', {items: await new ItemService().getAll()});
+            } catch {
+                res.render('err');
+            }
+        })
     }
 }

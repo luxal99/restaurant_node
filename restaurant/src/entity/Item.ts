@@ -23,7 +23,7 @@ export class Item extends BaseEntity {
     idImage: Image;
 
 
-    constructor(title: string, idCategory: Category, description: string, idImage: Image) {
+    constructor(title?: string, idCategory?: Category, description?: string, idImage?: Image) {
         super();
         this.title = title;
         this.idCategory = idCategory;

@@ -100,7 +100,7 @@ const user = cookie;
                     <%
                     for(const item of items){ %>
                         <div class="category-div">
-                            <div class="row">
+                            <div class="row" onclick="showItem('<%= item.id %>')">
                                 <div class="col-sm">
                                     <h6>Naziv proizovda</h6>
                                     <h4><%= item.title %></h4>
@@ -111,6 +111,10 @@ const user = cookie;
                                     <h4><%= item.idCategory.title %></h4>
                                 </div>
 
+                                <button type="button" class="modal-btn" data-toggle="modal" data-target="#editModal">
+                                    Edit
+                                </button>
+
                                 <form method="get" action="/item/delete/<%= item.id %>">
                                     <div class="col-sm-1">
                                         <button type="submit" class="close-btn"><i class="fa fa-times"></i></button>
@@ -120,7 +124,6 @@ const user = cookie;
                         </div>
                     <% } %>
                 </div>
-
                 <!-- Modal -->
                 <div class="modal fade" id="menuItems" tabindex="-1" aria-labelledby="exampleModalLabel"
                      aria-hidden="true">
@@ -176,11 +179,116 @@ const user = cookie;
 
                 </div>
 
+                <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                     aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Dodaj u meni</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form class="w3-container">
+
+                                    <div class="edit-form">
+                                        <div class="form-group">
+                                            <input class="w3-input" id="edit-form-title" type="text" name="title"
+                                                   value="">
+                                            <label>Naziv </label>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <select name="idCategory" class="form-control form-control-lg">
+                                                <% for (const category of categories) { %>
+
+                                                    <option id="edit-form-category"
+                                                            value="<%= category.id %>"><%= category.title %>
+                                                    </option>
+
+                                                <% }
+                                                %>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="exampleFormControlTextarea1">Opis</label>
+                                            <textarea class="form-control" id="edit-form-description" rows="3"
+                                                      name="description"></textarea>
+                                        </div>
+
+                                        <div class="text-center">
+                                            <img class="img-fluid" id="edit-form-img">
+                                        </div>
+
+                                    </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="modal-btn" style="background-color: #121212"
+                                        data-dismiss="modal">Close
+                                </button>
+                                <button type="submit" class="modal-btn" onclick="update()">Sacuvaj</button>
+                            </div>
+                            </form>
+
+
+                        </div>
+                    </div>
+
+
+                </div>
+
             </div>
         </div>
     </div>
 </div>
 
+<script>
+    let itemById = {};
+
+    async function showItem(item) {
+        let response = await fetch(`http://localhost:3000/item/byId/${item}`)
+            .then(response => response.json())
+            .then(data => itemById = data);
+
+        document.getElementById('edit-form-title').value = itemById.title;
+        document.getElementById('edit-form-description').value = itemById.description;
+        document.getElementById('edit-form-category').value = itemById.idCategory.id;
+        document.getElementById('edit-form-category').textContent = itemById.idCategory.title;
+        document.getElementById('edit-form-img').src = itemById.idImage.url;
+
+    }
+
+    async function update() {
+        const item = {
+            id: itemById.id,
+            title: document.getElementById('edit-form-title').value = itemById.title,
+            description: document.getElementById('edit-form-description').value
+        }
+
+        postData('http://localhost:3000/item/update', item).then(data => {
+            location.href='http://localhost:3000/login'
+        });
+
+
+    }
+
+    async function postData(url = '', data = {}) {
+        // Default options are marked with *
+        const response = await fetch(url, {
+            method: 'POST',
+            mode: 'cors',
+            cache: 'no-cache',
+            credentials: 'same-origin',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            referrer: 'https://google.com',
+            body: JSON.stringify(data)
+        });
+        return response.json();
+    }
+</script>
 
 </body>
 </html>
