@@ -50,11 +50,11 @@ export class App {
         this.categoryRouteName = categoryRouteName;
         this.menuItemRouteName = menuItemRouteName;
 
-        this.pageRoutes();
+        this.menuItemRoute();
 
+        this.pageRoutes();
         this.userRoute();
         this.categoryRoute();
-        this.menuItemRoute();
 
     }
 
