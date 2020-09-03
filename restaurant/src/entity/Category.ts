@@ -16,7 +16,7 @@ export class Category extends BaseEntity {
     listOfItems: Item[];
 
 
-    constructor(title: string) {
+    constructor(title?: string) {
         super();
         this.title = title;
     }

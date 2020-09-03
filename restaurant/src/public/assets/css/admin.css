@@ -89,3 +89,12 @@ h3 {
 .edit-form{
     padding: 1em;
 }
+
+::-webkit-scrollbar {
+    height: 1em;
+    background-color: #222;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #ffa900;
+}

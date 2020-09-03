@@ -91,6 +91,21 @@ export class App {
             res.render('error')
         })
 
+        this.app.get('/admin', async (req: Request, res: Response) => {
+            try {
+                const user = await new UserService().findByName('admin');
+                if (await bcrypt.compare(JSON.stringify(user.id), req.cookies.id))
+                    res.render("admin", {
+                        categories: await new CategoryService().getAll(),
+                        cookie: req.cookies.id,
+                        items: await new ItemService().getAll()
+                    })
+
+            } catch {
+                res.render('login')
+            }
+        })
+
 
         this.app.get('/**', (req: Request, res: Response) => {
             res.render('404')
@@ -118,7 +133,8 @@ export class App {
                         categories: await new CategoryService().getAll(),
                         cookie: req.cookies.id,
                         items: await new ItemService().getAll()
-                    }) : res.sendStatus(403))
+                    })
+                    : res.sendStatus(403))
 
             } catch {
                 res.render('error')
@@ -214,17 +230,24 @@ export class App {
         })
 
         this.app.post(`/${this.menuItemRouteName}/update`, async (req: Request, res: Response) => {
-            try {
+
+
                 const item = new Item();
                 item.title = req.body.title;
                 item.description = req.body.description;
-                item.id = req.body.id;
+                item.id =Number.parseInt( req.body.id);
+
+                const category = new Category();
+                category.id = Number.parseInt(req.body.idCategory);
+
+                item.idCategory = category;
 
                 await new ItemService().update(item);
-                res.render('menu', {items: await new ItemService().getAll()});
-            } catch {
-                res.render('err');
-            }
+                res.render('admin', {
+                    categories: await new CategoryService().getAll(),
+                    items: await new ItemService().getAll()
+                })
+
         })
     }
 }

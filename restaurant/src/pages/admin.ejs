@@ -25,9 +25,6 @@
 </head>
 <body>
 
-<%
-const user = cookie;
-%>
 
 <div class="header">
     <h3 class="text-center">Lorem ipsum dolor nunc</h3>
@@ -190,8 +187,8 @@ const user = cookie;
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <form class="w3-container">
-
+                                <form class="w3-container" method="post" action="/item/update">
+                                    <input type="hidden" value="" name="id" id="idItem">
                                     <div class="edit-form">
                                         <div class="form-group">
                                             <input class="w3-input" id="edit-form-title" type="text" name="title"
@@ -227,7 +224,7 @@ const user = cookie;
                                 <button type="button" class="modal-btn" style="background-color: #121212"
                                         data-dismiss="modal">Close
                                 </button>
-                                <button type="submit" class="modal-btn" onclick="update()">Sacuvaj</button>
+                                <button type="submit" class="modal-btn" >Sacuvaj</button>
                             </div>
                             </form>
 
@@ -251,10 +248,12 @@ const user = cookie;
             .then(response => response.json())
             .then(data => itemById = data);
 
+        console.log(itemById.id)
+
         document.getElementById('edit-form-title').value = itemById.title;
         document.getElementById('edit-form-description').value = itemById.description;
         document.getElementById('edit-form-category').value = itemById.idCategory.id;
-        document.getElementById('edit-form-category').textContent = itemById.idCategory.title;
+        document.getElementById('idItem').value = itemById.id;
         document.getElementById('edit-form-img').src = itemById.idImage.url;
 
     }
@@ -262,12 +261,12 @@ const user = cookie;
     async function update() {
         const item = {
             id: itemById.id,
-            title: document.getElementById('edit-form-title').value = itemById.title,
-            description: document.getElementById('edit-form-description').value
+            title: document.getElementById('edit-form-title').value,
+            description: document.getElementById('edit-form-description').value,
+            idCategory:{id:Number.parseInt(document.getElementById('edit-form-category').value)}
         }
-
         postData('http://localhost:3000/item/update', item).then(data => {
-            location.href='http://localhost:3000/login'
+            location.href='http://localhost:3000/admin'
         });
 
 
@@ -277,16 +276,15 @@ const user = cookie;
         // Default options are marked with *
         const response = await fetch(url, {
             method: 'POST',
-            mode: 'cors',
             cache: 'no-cache',
             credentials: 'same-origin',
             headers: {
                 'Content-Type': 'application/json'
             },
-            referrer: 'https://google.com',
             body: JSON.stringify(data)
         });
-        return response.json();
+
+
     }
 </script>
 
