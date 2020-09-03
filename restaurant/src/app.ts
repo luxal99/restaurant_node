@@ -12,6 +12,8 @@ import {Item} from "./entity/Item";
 import * as firebase from "firebase";
 import {Image} from "./entity/Image";
 import {ImageService} from "./service/ImageService";
+import {Message} from "./entity/Message";
+import {MessageService} from "./service/MessageService";
 
 const cors = require('cors');
 let cookieParser = require('cookie-parser');
@@ -19,7 +21,6 @@ const fileUpload = require('express-fileupload');
 const fs = require('fs');
 
 require('firebase/storage');
-
 
 export class App {
 
@@ -29,8 +30,9 @@ export class App {
     private userRouteName: string;
     private categoryRouteName: string;
     private menuItemRouteName: string;
+    private messageRouteName: string;
 
-    constructor(userRouteName: string, categoryRouteName: string, menuItemRouteName: string) {
+    constructor(userRouteName: string, categoryRouteName: string, menuItemRouteName: string, messageRouteName: string) {
 
 
         this.app = express();
@@ -46,12 +48,14 @@ export class App {
 
         this.categoryRouteName = categoryRouteName;
         this.menuItemRouteName = menuItemRouteName;
+        this.messageRouteName = messageRouteName;
 
         this.menuItemRoute();
 
         this.pageRoutes();
         this.userRoute();
         this.categoryRoute();
+        this.messageRoute()
 
     }
 
@@ -262,6 +266,26 @@ export class App {
                 res.render('error')
             }
 
+        })
+    }
+
+    messageRoute() {
+        this.app.post(`/${this.messageRouteName}`, async (req: Request, res: Response) => {
+            try {
+                const message = new Message();
+
+                message.fullName = req.body.full_name;
+                message.email = req.body.email;
+                message.telephone = req.body.telephone;
+                message.message = req.body.message;
+
+                await new MessageService().save(message);
+
+                res.render('home', {items: await new ItemService().getAll()})
+
+            } catch {
+                res.render('error')
+            }
         })
     }
 }

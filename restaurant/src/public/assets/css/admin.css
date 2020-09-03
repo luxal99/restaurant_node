@@ -91,12 +91,12 @@ h3 {
 }
 
 ::-webkit-scrollbar {
-    height: 1em;
-    background-color: #222;
+
+    display: none;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #ffa900;
+   display: none;
 }
 
 
