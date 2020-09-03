@@ -145,7 +145,7 @@ export class App {
         this.app.post(`/${this.menuItemRouteName}`, async (req: Request, res: Response) => {
 
             const image = req.files.image;
-            await image.mv(`src/public/uploads/${image.name}`, (err) => {
+            await image.mv(`src/public/assets/uploads/${image.name}`, (err) => {
             });
 
             const imageEntity = new Image(`/uploads/${image.name}`);

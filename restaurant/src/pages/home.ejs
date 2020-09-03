@@ -104,13 +104,17 @@
 
         <div class="divider" style="background-color: #d5d5d5"></div>
         <div class="row item-row">
-            <% for (const item of items){ %>
+            <% items.splice(0, 4) %>
+            <% for (const item of items ){ %>
+
                 <div class="col-sm-5 item-card">
                     <div style="padding: 1em">
                         <h5 class="text-left" style="padding: .2em"><i class="fa fa-info-circle"
-                                                 style="color:#845a00;"></i> <%= item.idCategory.title %></h5>
+                                                                       style="color:#845a00;"></i> <%= item.idCategory.title %>
+                        </h5>
                         <div class="divider"></div>
-                        <h5 class="text-left" style="padding: .2em"><i class="fa fa-info-circle" style="color: #121212"></i> <%= item.title %>
+                        <h5 class="text-left" style="padding: .2em"><i class="fa fa-info-circle"
+                                                                       style="color: #121212"></i> <%= item.title %>
                         </h5>
                     </div>
                     <img class="img-fluid" src="<%= item.idImage.url %>" width="300px" style="padding-top: 2em">
