@@ -128,7 +128,12 @@ h5{
     }
 }
 
-
+@media screen and (max-width: 420px){
+    #loader{
+        padding-top: 30% !important;
+        width: 1000px !important;
+    }
+}
 
 @media screen and (max-width: 812px) and (min-width: 421px) {
     h1{
@@ -137,5 +142,4 @@ h5{
     .header{
         height: 140vh;
     }
-
 }
