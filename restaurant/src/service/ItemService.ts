@@ -33,7 +33,8 @@ export class ItemService {
             .set({
                 title: item.title,
                 description: item.description,
-                idCategory:item.idCategory
+                idCategory: item.idCategory,
+                idImage: item.idImage
             })
             .where("id = :id", {id: item.id})
             .execute();

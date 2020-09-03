@@ -98,3 +98,27 @@ h3 {
 ::-webkit-scrollbar-thumb {
     background: #ffa900;
 }
+
+
+.change-img-btn{
+    width: 100%;
+    text-transform: uppercase;
+    margin-top: 5em;
+    border: 0 !important;
+    background-color: #ffa900;
+    letter-spacing: 3px;
+    font-family: 'Lato', sans-serif !important;
+    padding: 1em;
+    color: #fff;
+}
+
+#change-img-div{
+    display: none;
+    padding-top: 5em;
+}
+
+a:hover{
+    color: #121212;
+    transition: .5s ease;
+    text-decoration: none !important;
+}

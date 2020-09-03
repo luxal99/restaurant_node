@@ -1,16 +1,8 @@
 import express = require("express");
-import {Application, Request, Response} from "express";
 import bodyParser = require("body-parser");
-
-const cors = require('cors');
-let cookieParser = require('cookie-parser');
-const fileUpload = require('express-fileupload');
-const fs = require('fs');
-
-require('firebase/storage');
-
 import bcrypt = require("bcrypt");
 import path = require('path');
+import {Application, Request, Response} from "express";
 import {UserService} from "./service/UserService";
 import {User} from "./entity/User";
 import {CategoryService} from "./service/CategoryService";
@@ -18,10 +10,15 @@ import {Category} from "./entity/Category";
 import {ItemService} from "./service/ItemService";
 import {Item} from "./entity/Item";
 import * as firebase from "firebase";
-import Blob = firebase.firestore.Blob;
 import {Image} from "./entity/Image";
 import {ImageService} from "./service/ImageService";
-import {log} from "util";
+
+const cors = require('cors');
+let cookieParser = require('cookie-parser');
+const fileUpload = require('express-fileupload');
+const fs = require('fs');
+
+require('firebase/storage');
 
 
 export class App {
@@ -231,22 +228,39 @@ export class App {
 
         this.app.post(`/${this.menuItemRouteName}/update`, async (req: Request, res: Response) => {
 
+            try {
 
-                const item = new Item();
+                let item = new Item();
+                let category = new Category();
+                let image = new Image();
+
+                category.id = Number.parseInt(req.body.idCategory);
+                image.id = Number.parseInt(req.body.idImage);
+
                 item.title = req.body.title;
                 item.description = req.body.description;
-                item.id =Number.parseInt( req.body.id);
-
-                const category = new Category();
-                category.id = Number.parseInt(req.body.idCategory);
-
+                item.id = Number.parseInt(req.body.id);
                 item.idCategory = category;
+                item.idImage = image;
+
+                if (req.files != null) {
+                    const newImage = req.files.image;
+                    await newImage.mv(`src/public/assets/uploads/${newImage.name}`, (err) => {
+                    });
+
+                    const img = new Image(`/uploads/${req.files.image.name}`);
+                    await new ImageService().save(img);
+                    item.idImage = img;
+                }
 
                 await new ItemService().update(item);
                 res.render('admin', {
                     categories: await new CategoryService().getAll(),
                     items: await new ItemService().getAll()
                 })
+            } catch {
+                res.render('error')
+            }
 
         })
     }

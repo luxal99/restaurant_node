@@ -11,7 +11,7 @@ export class Image extends BaseEntity {
     url: string;
 
 
-    constructor(url: string) {
+    constructor(url?: string) {
         super();
         this.url = url;
     }

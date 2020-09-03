@@ -187,8 +187,10 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <form class="w3-container" method="post" action="/item/update">
+                                <form class="w3-container" enctype="multipart/form-data" method="post"
+                                      action="/item/update">
                                     <input type="hidden" value="" name="id" id="idItem">
+                                    <input type="hidden" value="" name="idImage" id="idImage">
                                     <div class="edit-form">
                                         <div class="form-group">
                                             <input class="w3-input" id="edit-form-title" type="text" name="title"
@@ -218,13 +220,24 @@
                                             <img class="img-fluid" id="edit-form-img">
                                         </div>
 
+                                        <div class="text-center">
+                                            <a class="change-img-btn" onclick="openUpload()">IZMENI SLIKU</a>
+                                        </div>
+
+                                        <div id="change-img-div">
+                                            <div class="form-group">
+                                                <input class="w3-input" type="file" name="image">
+                                                <label>Izaberi fajl</label>
+                                            </div>
+                                        </div>
+
                                     </div>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="modal-btn" style="background-color: #121212"
                                         data-dismiss="modal">Close
                                 </button>
-                                <button type="submit" class="modal-btn" >Sacuvaj</button>
+                                <button type="submit" class="modal-btn">Sacuvaj</button>
                             </div>
                             </form>
 
@@ -255,36 +268,16 @@
         document.getElementById('edit-form-category').value = itemById.idCategory.id;
         document.getElementById('idItem').value = itemById.id;
         document.getElementById('edit-form-img').src = itemById.idImage.url;
+        document.getElementById('idImage').value = itemById.idImage.id;
 
     }
 
-    async function update() {
-        const item = {
-            id: itemById.id,
-            title: document.getElementById('edit-form-title').value,
-            description: document.getElementById('edit-form-description').value,
-            idCategory:{id:Number.parseInt(document.getElementById('edit-form-category').value)}
-        }
-        postData('http://localhost:3000/item/update', item).then(data => {
-            location.href='http://localhost:3000/admin'
-        });
+    function openUpload() {
+        const x = document.getElementById("change-img-div");
 
-
-    }
-
-    async function postData(url = '', data = {}) {
-        // Default options are marked with *
-        const response = await fetch(url, {
-            method: 'POST',
-            cache: 'no-cache',
-            credentials: 'same-origin',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        });
-
-
+        var y = (x.style.display === "none") ?
+            x.style.display = "block" :
+            x.style.display = "none";
     }
 </script>
 
