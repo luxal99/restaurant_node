@@ -87,6 +87,10 @@ export class App {
             res.render('menu', {items: await new ItemService().getAll()})
         })
 
+        this.app.get('/**',(req:Request,res:Response)=>{
+            res.render('404')
+        })
+
 
     }
 
