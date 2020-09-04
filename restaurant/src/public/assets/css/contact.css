@@ -115,4 +115,11 @@ h4 {
 .text-left{
     text-align: center !important;
 }
+h2{
+    font-size: 40px !important;
+}
+#overlay{
+       
+    zoom: 75%;
+}
 }

@@ -187,5 +187,13 @@ button{
     .contact-btn{
         width: 80%;
     }
+    .header-div{
+        border: none;
+    }
+    #overlay{
+       
+        zoom: 75%;
+    }
+  
    
 }

@@ -133,6 +133,10 @@ h5{
         padding-top: 30% !important;
         width: 1000px !important;
     }
+    .more-h1{
+        font-size: 40px !important;
+    }
+    
 }
 
 @media screen and (max-width: 812px) and (min-width: 421px) {
