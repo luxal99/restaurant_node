@@ -5,7 +5,7 @@
       <paths name="Alemarc">
         <serverdata>
           <mappings>
-            <mapping deploy="/app/restaurant" local="$PROJECT_DIR$" web="/" />
+            <mapping deploy="/app/restaurant_node" local="$PROJECT_DIR$" web="/" />
           </mappings>
         </serverdata>
       </paths>
