@@ -14,7 +14,7 @@ createConnection({
     "host": "localhost",
     "port": 3306,
     "username": "root",
-    "password": "alemarc99",
+    "password": "Luxal.99",
     "database": "restaurant",
     "synchronize": true,
     "logging": false,

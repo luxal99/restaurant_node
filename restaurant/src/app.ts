@@ -9,7 +9,6 @@ import {CategoryService} from "./service/CategoryService";
 import {Category} from "./entity/Category";
 import {ItemService} from "./service/ItemService";
 import {Item} from "./entity/Item";
-import * as firebase from "firebase";
 import {Image} from "./entity/Image";
 import {ImageService} from "./service/ImageService";
 import {Message} from "./entity/Message";
@@ -20,7 +19,6 @@ let cookieParser = require('cookie-parser');
 const fileUpload = require('express-fileupload');
 const fs = require('fs');
 
-require('firebase/storage');
 
 export class App {
 

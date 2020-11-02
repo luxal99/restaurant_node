@@ -19,7 +19,6 @@
       "ejs": "^3.1.5",
       "express": "^4.17.1",
       "express-fileupload": "^1.2.0",
-      "firebase": "^7.19.1",
       "fs": "0.0.1-security",
       "jquery": "^3.5.1",
       "mysql": "^2.14.1",
