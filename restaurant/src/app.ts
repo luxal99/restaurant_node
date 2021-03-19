@@ -13,7 +13,9 @@ import {Image} from "./entity/Image";
 import {ImageService} from "./service/ImageService";
 import {Message} from "./entity/Message";
 import {MessageService} from "./service/MessageService";
+import verify from "./verified"
 
+const jwt = require('jsonwebtoken')
 const cors = require('cors');
 let cookieParser = require('cookie-parser');
 const fileUpload = require('express-fileupload');
@@ -50,7 +52,7 @@ export class App {
 
         this.menuItemRoute();
 
-        this.pageRoutes();
+        //this.pageRoutes();
         this.userRoute();
         this.categoryRoute();
         this.messageRoute()
@@ -125,18 +127,25 @@ export class App {
             try {
                 const user = await new UserService().findByName(req.body.username);
 
-                const auth = ((user != null && await bcrypt.compare(req.body.password, user.password))
-                    ? res.cookie("id", await bcrypt.hash(JSON.stringify(user.id), 10)) &&
+                if (!user) {
+                    res.send({message: "Not found"})
+                } else if (await bcrypt.compare(req.body.password, user.password)) {
+                    const token = jwt.sign({_id: user.id}, process.env.TOKEN_SECRET);
+                    res.header('auth-token', token).send(token)
+                }
 
-                    res.render("admin", {
-                        categories: await new CategoryService().getAll(),
-                        cookie: req.cookies.id,
-                        items: await new ItemService().getAll()
-                    })
-                    : res.sendStatus(403))
+                // const auth = ((user != null && await bcrypt.compare(req.body.password, user.password))
+                //     ? res.cookie("id", await bcrypt.hash(JSON.stringify(user.id), 10)) &&
+                //
+                //     res.render("admin", {
+                //         categories: await new CategoryService().getAll(),
+                //         cookie: req.cookies.id,
+                //         items: await new ItemService().getAll()
+                //     })
+                //     : res.sendStatus(403))
 
-            } catch {
-                res.render('error')
+            } catch (err) {
+                console.log(err)
             }
         })
     }
@@ -155,7 +164,7 @@ export class App {
             }
         })
 
-        this.app.get(`/${this.categoryRouteName}`, async (req: Request, res: Response) => {
+        this.app.get(`/${this.categoryRouteName}`, verify, async (req: Request, res: Response) => {
             try {
                 res.send(await new CategoryService().getAll());
             } catch {
@@ -183,7 +192,8 @@ export class App {
                     categories: await new CategoryService().getAll(),
                     items: await new ItemService().getAll()
                 });
-            } catch {
+            } catch (err) {
+                console.log(err)
                 res.render('error')
             }
 

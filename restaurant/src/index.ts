@@ -6,6 +6,7 @@ import {Category} from "./entity/Category";
 import {Image} from "./entity/Image";
 import {Item} from "./entity/Item";
 import {Message} from "./entity/Message";
+import {PORT} from "./const/const";
 
 
 
@@ -41,6 +42,6 @@ createConnection({
 }).catch(error => console.log(error));
 
 const application = new App("user","category","item","message").app;
-application.listen(3000,()=>{
-    console.log("Listen on port")
+application.listen(PORT,()=>{
+    console.log(`Listen on port ${PORT}`)
 })

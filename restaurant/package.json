@@ -21,12 +21,14 @@
       "express-fileupload": "^1.2.0",
       "fs": "0.0.1-security",
       "jquery": "^3.5.1",
+      "jsonwebtoken": "^8.5.1",
       "mysql": "^2.14.1",
       "reflect-metadata": "^0.1.10",
       "typeorm": "0.2.25",
       "watermark": "^1.0.2"
    },
    "scripts": {
-      "start": "ts-node src/index.ts"
+      "start": "ts-node src/index.ts",
+      "build": "tsc"
    }
 }
